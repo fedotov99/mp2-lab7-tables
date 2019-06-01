@@ -1,19 +1,36 @@
-typedef string TKey     // тип ключа записи
+#pragma once
+#include "DatValue.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+typedef string TKey;     // тип ключа записи
 //  ласс объектов-значений дл€ записей таблицы
-class TTabRecord : public TDatValue {  protected:    // пол€    TKey Key;   // ключ записи
+class TTabRecord : public TDatValue {  protected:    // пол€    
+    TKey Key;   // ключ записи
     PTDatValue pValue;   // указатель на значение
   public:  // методы
-    TTabRecord (TKey k=ФФ, PTDatValue pVal = NULL)// конструктор 
-    void SetKey(TKey k);// установить значение ключа
-    TKey GetKey(void);  // получить значение ключа
-    void SetValuePtr(PTDatValue p);// установить указатель на данные
-    PTDatValue GetValuePTR (void); // получить указатель на данные
+    TTabRecord(TKey k = "", PTDatValue pVal = NULL); // конструктор 
+    void SetKey(TKey k) {
+        Key = k;
+    }; // установить значение ключа
+    TKey GetKey(void) {
+        return Key;
+    };  // получить значение ключа
+    void SetValuePtr(PTDatValue p) { 
+        pValue = p;
+    }; // установить указатель на данные
+    PTDatValue GetValuePTR(void) {
+        return pValue;
+    }; // получить указатель на данные
     virtual TDatValue * GetCopy(); // изготовить копию
-    TTabRecord & operator = (TTabRecord &tr);// присваивание
-    virtual int operator == (const TTabRecord &tr); // сравнение =
-    virtual int operator < (const TTabRecord &tr);  // сравнение Ђ<ї
-    virtual int operator > (const TTabRecord &tr);  // сравнение Ђ>ї
-//дружественные классы дл€ различных типов таблиц, см. далее
+    TTabRecord & operator= (TTabRecord &tr); // присваивание
+    virtual int operator== (const TTabRecord &tr); // сравнение =
+    virtual int operator< (const TTabRecord &tr);  // сравнение Ђ<ї
+    virtual int operator> (const TTabRecord &tr);  // сравнение Ђ>ї
+protected:
+    virtual void Print(ostream& os);
+  //дружественные классы дл€ различных типов таблиц, см. далее
   friend class TArrayTable;
   friend class TScanTable;
   friend class TSortTable;
@@ -22,3 +39,5 @@ class TTabRecord : public TDatValue {  protected:    // пол€    TKey Key;   // к
   friend class TArrayHash;
   friend class TListHash;
 };
+
+typedef TTabRecord * PTTabRecord;
