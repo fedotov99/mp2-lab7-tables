@@ -15,7 +15,7 @@ TSortTable & TSortTable::operator=(const TScanTable &tab) {
     DataCount = tab.GetDataCount();
     pRecs = new PTTabRecord[TabSize];
     for (int i = 0; i < DataCount; i++)
-        pRecs[i] = (PTTabRecord)tab.pRecs[i]->GetCopy();
+        pRecs[i] = PTTabRecord(tab.pRecs[i]->GetCopy());
     SortData();
     CurrPos = 0;
     return *this;

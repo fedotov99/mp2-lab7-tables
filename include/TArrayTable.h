@@ -41,5 +41,5 @@ class  TArrayTable : public TTable {
     int GetCurrentPos(void)const {
         return CurrPos;
     };     //получить номер текущей записи
-  friend TSortTable;
+  friend class TSortTable;
 };

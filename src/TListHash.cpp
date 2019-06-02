@@ -25,9 +25,9 @@ PTDatValue TListHash::FindRecord(TKey k) {
     PTDatList pl = pList[CurrList];
     Efficiency = 0;
     for (pl->Reset(); !pl->IsListEnded(); pl->GoNext())
-        if (PTRecord(pl->GetDatValue())->GetKey() == k)
+        if (PTTabRecord(pl->GetDatValue())->GetKey() == k)
         {
-            pVal = PTRecord(pl->GetDatValue())->GetValuePtr();
+            pVal = PTTabRecord(pl->GetDatValue())->GetValuePTR();
             break;
         }
     Efficiency = pl->GetCurrentPos() + 1;
