@@ -1,3 +1,6 @@
+#pragma once
+#include "THashTable.h"
+
 #define TabMaxSize 25
 #define TabHashStep 5
 class  TArrayHash : public THashTable {
@@ -13,10 +16,12 @@ class  TArrayHash : public THashTable {
     TArrayHash(int Size= TabMaxSize, int Step= TabHashStep); // конструктор
     ~TArrayHash();
     // информационные методы
-    virtual int IsFull ( ) const ; // заполнена?
+    virtual int IsFull()const {
+        return DataCount >= TabSize;
+    }; // заполнена?
     // доступ
-    virtual TKey GetKey (void) const;
-    virtual PTDatValue GetValuePTR (void) const;
+    virtual TKey GetKey()const;
+    virtual PTDatValue GetValuePTR()const;
     // основные методы
     virtual PTDatValue FindRecord (TKey k); // найти запись
     virtual void InsRecord (TKey k, PTDatValue pVal ); // вставить
