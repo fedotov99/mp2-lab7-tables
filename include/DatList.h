@@ -45,3 +45,4 @@ class TDatList : public TDataCom {
     virtual void DelList   ( void );    // удалить весь список
 };
 
+typedef TDatList * PTDatList;
