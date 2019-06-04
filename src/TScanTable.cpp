@@ -19,8 +19,9 @@ void TScanTable::InsRecord(TKey k, PTDatValue pVal) {
     // it is supposed that we use small quantity of records and want to get rid of
     // searching for double records (for max efficiency).
     if (!IsFull()) {
-        pRecs[DataCount]->Key = k;
-        pRecs[DataCount]->pValue = pVal;
+        pRecs[DataCount] = new TTabRecord(k, pVal);
+        //pRecs[DataCount]->Key = k;
+        //pRecs[DataCount]->pValue = pVal;
         DataCount++;
         Efficiency++; // not sure
         SetRetCode(TabOK);
