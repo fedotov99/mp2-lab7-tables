@@ -31,9 +31,9 @@ PTDatValue TSortTable::FindRecord(TKey k) { // bibary search
             return pRecs[i]->pValue;
         }
         if (pRecs[i]->Key < k)
-            i2 = i - 1;
-        else
             i1 = i + 1;
+        else // >=
+            i2 = i - 1;
     }
     SetRetCode(TabNoRec); // if did not find
     return nullptr;
